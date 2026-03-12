@@ -1,9 +1,9 @@
 import React from 'react';
-import { Monitor, Server, Database, Cloud, Brain, Wrench } from 'lucide-react';
+import { Monitor, Server, Database, Cloud, Brain, Wrench, type LucideIcon } from 'lucide-react';
 import { techStack } from '@/data/portfolioData';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
-const iconMap: Record<string, React.FC<{ size?: number; className?: string }>> = {
+const iconMap: Record<string, LucideIcon> = {
   layout: Monitor,
   server: Server,
   database: Database,
@@ -19,8 +19,6 @@ const TechSection: React.FC = () => {
 
   return (
     <section id="tech" className="relative py-24 sm:py-32">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-500/[0.02] to-transparent pointer-events-none" />
-
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div

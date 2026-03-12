@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { TrendingUp, Brain, Zap, Boxes, ChevronRight } from 'lucide-react';
+import { TrendingUp, Brain, Zap, Boxes, ChevronRight, type LucideIcon } from 'lucide-react';
 import { challengesData } from '@/data/portfolioData';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
-const iconMap: Record<string, React.FC<{ size?: number; className?: string }>> = {
+const iconMap: Record<string, LucideIcon> = {
   'trending-up': TrendingUp,
   'brain': Brain,
   'zap': Zap,
@@ -58,7 +58,7 @@ const ChallengesSection: React.FC = () => {
 
 const ChallengeCard: React.FC<{
   challenge: typeof challengesData[0];
-  Icon: React.FC<{ size?: number; className?: string }>;
+  Icon: LucideIcon;
   index: number;
   isExpanded: boolean;
   onToggle: () => void;

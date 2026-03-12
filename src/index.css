@@ -144,6 +144,21 @@ html {
   }
 }
 
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(60px, -40px) scale(1.12);
+  }
+  66% {
+    transform: translate(-50px, 45px) scale(0.94);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
 .animate-float { animation: float 6s ease-in-out infinite; }
 .animate-float-slow { animation: float-slow 8s ease-in-out infinite; }
 .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
@@ -152,10 +167,14 @@ html {
 .animate-scale-in { animation: scale-in 0.4s ease-out forwards; }
 .animate-gradient { animation: gradient-shift 8s ease infinite; background-size: 200% 200%; }
 .animate-spin-slow { animation: spin-slow 20s linear infinite; }
+.animate-blob { animation: blob 10s ease-in-out infinite; will-change: transform; }
 
 .scroll-progress-dot {
   animation: scroll-progress-pulse 1.4s ease-in-out infinite;
 }
+
+.animation-delay-2000 { animation-delay: 2s; }
+.animation-delay-4000 { animation-delay: 4s; }
 
 /* Staggered animation delays */
 .delay-100 { animation-delay: 100ms; }

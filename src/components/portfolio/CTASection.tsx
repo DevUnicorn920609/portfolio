@@ -16,7 +16,7 @@ const CTASection: React.FC = () => {
   };
 
   return (
-    <div ref={ref} className="py-24 sm:py-32">
+    <section ref={ref} className="relative py-24 sm:py-32">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div
           className={`relative p-8 sm:p-12 lg:p-16 rounded-3xl overflow-hidden transition-all duration-700 ${
@@ -53,7 +53,7 @@ const CTASection: React.FC = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
