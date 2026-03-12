@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ArrowDown, BookOpen, Mail } from 'lucide-react';
 import FloatingShapes from './FloatingShapes';
 import { avatarUrl } from '@/data/portfolioData';
+import heroImage from '@/assets/hero.png';
 
 const HeroSection: React.FC = () => {
   const [loaded, setLoaded] = useState(false);
@@ -18,7 +19,11 @@ const HeroSection: React.FC = () => {
   return (
     <section className="relative min-h-[calc(100vh-4rem)] lg:min-h-[calc(100vh-5rem)] flex items-center justify-center overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[hsl(160,10%,4%)] via-[hsl(160,12%,6%)] to-[hsl(160,10%,4%)]" />
+      <div
+        className="absolute inset-0 bg-center bg-cover bg-no-repeat"
+        style={{ backgroundImage: `url(${heroImage})` }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-[hsl(160,10%,4%)] via-[hsl(160,12%,6%)] to-[hsl(160,10%,4%)] opacity-85" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(52,211,153,0.08)_0%,transparent_70%)]" />
       <FloatingShapes />
 
@@ -130,6 +135,7 @@ const HeroSection: React.FC = () => {
             <Mail size={18} />
             Contact Me
           </button>
+
         </div>
       </div>
 

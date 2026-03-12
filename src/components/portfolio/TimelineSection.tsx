@@ -54,8 +54,12 @@ const TimelineItem: React.FC<{
   return (
     <div
       ref={ref}
-      className={`relative flex items-start transition-all duration-700 ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      className={`relative flex items-start will-change-transform will-change-opacity transition-[transform,opacity,filter] duration-700 ease-out ${
+        isVisible
+          ? 'opacity-100 translate-y-0 blur-0'
+          : `opacity-0 translate-y-10 blur-sm ${
+              isLeft ? 'sm:-translate-x-8' : 'sm:translate-x-8'
+            }`
       }`}
       style={{ transitionDelay: `${index * 150}ms` }}
     >
@@ -79,7 +83,7 @@ const TimelineItem: React.FC<{
         <div className="clear-both" />
 
         {/* Card */}
-        <div className="p-5 rounded-xl glass glass-hover transition-all duration-300 hover:-translate-y-0.5">
+        <div className="p-5 rounded-xl glass glass-hover transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-emerald-500/10">
           <h3 className="text-xl font-semibold text-white mb-2">{item.title}</h3>
           <p className="text-sm text-gray-400 leading-relaxed mb-4">{item.description}</p>
 

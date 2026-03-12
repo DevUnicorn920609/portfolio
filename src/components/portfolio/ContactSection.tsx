@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Send, Github, Linkedin, Mail, FileDown, CircleCheck, Loader2 } from 'lucide-react';
+import { Send, Github, Mail, MessageCircle, FileDown, CircleCheck, Loader2 } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 import { useScrollReveal } from '@/hooks/useScrollReveal';
+import { socialLinks } from '@/data/portfolioData';
 
 const ContactSection: React.FC = () => {
   const { ref: titleRef, isVisible: titleVisible } = useScrollReveal();
@@ -9,6 +11,7 @@ const ContactSection: React.FC = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const validate = () => {
     const errs: Record<string, string> = {};
@@ -25,12 +28,43 @@ const ContactSection: React.FC = () => {
     setErrors(errs);
     if (Object.keys(errs).length > 0) return;
 
+    setSubmitError(null);
     setSubmitting(true);
-    // Simulate submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    setSubmitting(false);
-    setSubmitted(true);
-    setFormData({ name: '', email: '', message: '' });
+
+    try {
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID as string | undefined;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string | undefined;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string | undefined;
+
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error('Missing EmailJS environment variables. Please check your .env file.');
+      }
+
+      // NOTE: These parameter keys must match your EmailJS template variables.
+      // Common patterns: from_name, from_email, message, reply_to
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          // If your EmailJS template only renders `{{message}}`, this ensures
+          // you still receive name + email + message in the email content.
+          message: `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`,
+          reply_to: formData.email,
+          to_email: socialLinks.email,
+        },
+        { publicKey }
+      );
+
+      setSubmitted(true);
+      setFormData({ name: '', email: '', message: '' });
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Failed to send message. Please try again.';
+      setSubmitError(message);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleChange = (field: string, value: string) => {
@@ -85,6 +119,11 @@ const ContactSection: React.FC = () => {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
+                {submitError && (
+                  <div className="p-4 rounded-xl border border-red-500/30 bg-red-500/10 text-red-200 text-sm">
+                    {submitError}
+                  </div>
+                )}
                 {/* Name */}
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">Name</label>
@@ -159,7 +198,7 @@ const ContactSection: React.FC = () => {
               <h3 className="text-sm font-semibold text-gray-300 uppercase tracking-wider mb-4">Connect</h3>
               <div className="space-y-3">
                 <a
-                  href="https://github.com"
+                  href={socialLinks.github}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 transition-all group"
@@ -174,22 +213,22 @@ const ContactSection: React.FC = () => {
                 </a>
 
                 <a
-                  href="https://linkedin.com"
+                  href={socialLinks.whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 transition-all group"
                 >
                   <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-emerald-500/10 transition-colors">
-                    <Linkedin size={18} className="text-gray-400 group-hover:text-emerald-400 transition-colors" />
+                    <MessageCircle size={18} className="text-gray-400 group-hover:text-emerald-400 transition-colors" />
                   </div>
                   <div>
-                    <div className="text-sm font-medium text-white">LinkedIn</div>
-                    <div className="text-xs text-gray-500">Professional profile</div>
+                    <div className="text-sm font-medium text-white">WhatsApp</div>
+                    <div className="text-xs text-gray-500">Chat with me</div>
                   </div>
                 </a>
 
                 <a
-                  href="mailto:hello@example.com"
+                  href={`mailto:${socialLinks.email}`}
                   className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 transition-all group"
                 >
                   <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-emerald-500/10 transition-colors">
@@ -197,25 +236,10 @@ const ContactSection: React.FC = () => {
                   </div>
                   <div>
                     <div className="text-sm font-medium text-white">Email</div>
-                    <div className="text-xs text-gray-500">hello@example.com</div>
+                    <div className="text-xs text-gray-500">{socialLinks.email}</div>
                   </div>
                 </a>
               </div>
-            </div>
-
-            {/* Resume Download */}
-            <div className="p-6 rounded-2xl glass">
-              <h3 className="text-sm font-semibold text-gray-300 uppercase tracking-wider mb-4">Resume</h3>
-              <button
-                onClick={() => {
-                  // In a real app, this would trigger a download
-                  alert('Resume download would be triggered here. Add your resume PDF URL to enable this feature.');
-                }}
-                className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white/5 border border-white/10 text-white hover:bg-emerald-500/10 hover:border-emerald-500/20 transition-all duration-300 group"
-              >
-                <FileDown size={18} className="text-gray-400 group-hover:text-emerald-400 transition-colors" />
-                <span className="text-sm font-medium">Download Resume</span>
-              </button>
             </div>
 
             {/* Quick Info */}

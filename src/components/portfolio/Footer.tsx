@@ -1,5 +1,6 @@
 import React from 'react';
-import { Github, Linkedin, Mail, ArrowUp } from 'lucide-react';
+import { Github, Mail, MessageCircle, ArrowUp } from 'lucide-react';
+import { socialLinks } from '@/data/portfolioData';
 
 const Footer: React.FC = () => {
   const scrollToTop = () => {
@@ -29,7 +30,7 @@ const Footer: React.FC = () => {
             </p>
             <div className="flex items-center gap-3">
               <a
-                href="https://github.com"
+                href={socialLinks.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center hover:bg-emerald-500/10 transition-colors group"
@@ -37,15 +38,15 @@ const Footer: React.FC = () => {
                 <Github size={16} className="text-gray-500 group-hover:text-emerald-400 transition-colors" />
               </a>
               <a
-                href="https://linkedin.com"
+                href={socialLinks.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center hover:bg-emerald-500/10 transition-colors group"
               >
-                <Linkedin size={16} className="text-gray-500 group-hover:text-emerald-400 transition-colors" />
+                <MessageCircle size={16} className="text-gray-500 group-hover:text-emerald-400 transition-colors" />
               </a>
               <a
-                href="mailto:hello@example.com"
+                href={`mailto:${socialLinks.email}`}
                 className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center hover:bg-emerald-500/10 transition-colors group"
               >
                 <Mail size={16} className="text-gray-500 group-hover:text-emerald-400 transition-colors" />

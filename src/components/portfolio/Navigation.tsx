@@ -16,6 +16,8 @@ const Navigation: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
 
+  const bookingUrl = import.meta.env.VITE_CAL_BOOKING_URL as string | undefined;
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
@@ -43,6 +45,18 @@ const Navigation: React.FC = () => {
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const handleBookingClick = () => {
+    setMobileOpen(false);
+
+    if (bookingUrl) {
+      window.open(bookingUrl, '_blank', 'noopener,noreferrer');
+      return;
+    }
+
+    // Fallback: if booking URL is not configured, scroll to contact section.
+    handleNavClick('#contact');
   };
 
   return (
@@ -84,11 +98,12 @@ const Navigation: React.FC = () => {
               </button>
             ))}
             <button
-              onClick={() => handleNavClick('#contact')}
+              onClick={handleBookingClick}
               className="ml-3 px-5 py-2 text-sm font-medium bg-emerald-500 text-[hsl(160,10%,4%)] rounded-lg hover:bg-emerald-400 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/20"
             >
               Let's Talk
             </button>
+
           </div>
 
           {/* Mobile Menu Button */}
@@ -122,11 +137,12 @@ const Navigation: React.FC = () => {
             </button>
           ))}
           <button
-            onClick={() => handleNavClick('#contact')}
+            onClick={handleBookingClick}
             className="w-full mt-2 px-4 py-3 text-sm font-medium bg-emerald-500 text-[hsl(160,10%,4%)] rounded-lg hover:bg-emerald-400 transition-all"
           >
             Let's Talk
           </button>
+
         </div>
       </div>
     </nav>

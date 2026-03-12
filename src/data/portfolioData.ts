@@ -258,6 +258,12 @@ export const timelineData = [
   },
 ];
 
+export const socialLinks = {
+  github: 'https://github.com/DevUnicorn920609',
+  whatsapp: 'https://wa.me/15482327844?text=Hi!%20I%20visited%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project.',
+  email: 'jamescampbell0195@gmail.com',
+};
+
 export const challengesData = [
   {
     title: "Scaling SaaS Platforms",

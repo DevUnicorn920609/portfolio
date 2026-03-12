@@ -14,10 +14,12 @@ import ContactSection from './portfolio/ContactSection';
 import CTASection from './portfolio/CTASection';
 import Footer from './portfolio/Footer';
 import WhatsAppButton from './portfolio/WhatsAppButton';
+import ScrollProgress from './portfolio/ScrollProgress';
 
 const AppLayout: React.FC = () => {
   return (
     <div className="min-h-screen bg-[hsl(160,10%,4%)] text-white overflow-x-hidden">
+      <ScrollProgress />
       <Navigation />
       {/*
         Navigation is `fixed`, so we offset the whole page content by the

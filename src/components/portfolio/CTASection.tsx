@@ -4,6 +4,16 @@ import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 const CTASection: React.FC = () => {
   const { ref, isVisible } = useScrollReveal(0.2);
+  const bookingUrl = import.meta.env.VITE_CAL_BOOKING_URL as string | undefined;
+
+  const handleBookingClick = () => {
+    if (bookingUrl) {
+      window.open(bookingUrl, '_blank', 'noopener,noreferrer');
+      return;
+    }
+
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <div ref={ref} className="py-24 sm:py-32">
@@ -27,7 +37,7 @@ const CTASection: React.FC = () => {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <button
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={handleBookingClick}
                 className="group flex items-center gap-2 px-8 py-4 bg-emerald-500 text-[hsl(160,10%,4%)] font-semibold rounded-xl hover:bg-emerald-400 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/25"
               >
                 Start a Conversation

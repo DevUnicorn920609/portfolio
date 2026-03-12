@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { socialLinks } from '@/data/portfolioData';
 
 const WhatsAppButton: React.FC = () => {
   const [visible, setVisible] = useState(false);
@@ -12,7 +13,7 @@ const WhatsAppButton: React.FC = () => {
   const handleClick = () => {
     // Opens WhatsApp with a pre-filled message
     window.open(
-      'https://wa.me/?text=Hi!%20I%20visited%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project.',
+      socialLinks.whatsapp,
       '_blank'
     );
   };

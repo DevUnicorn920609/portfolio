@@ -133,6 +133,17 @@ html {
   to { stroke-dashoffset: 0; }
 }
 
+@keyframes scroll-progress-pulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(0.85);
+    opacity: 0.85;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.25);
+    opacity: 1;
+  }
+}
+
 .animate-float { animation: float 6s ease-in-out infinite; }
 .animate-float-slow { animation: float-slow 8s ease-in-out infinite; }
 .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
@@ -141,6 +152,10 @@ html {
 .animate-scale-in { animation: scale-in 0.4s ease-out forwards; }
 .animate-gradient { animation: gradient-shift 8s ease infinite; background-size: 200% 200%; }
 .animate-spin-slow { animation: spin-slow 20s linear infinite; }
+
+.scroll-progress-dot {
+  animation: scroll-progress-pulse 1.4s ease-in-out infinite;
+}
 
 /* Staggered animation delays */
 .delay-100 { animation-delay: 100ms; }
