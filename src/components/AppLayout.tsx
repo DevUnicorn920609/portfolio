@@ -9,6 +9,7 @@ import ProductsSection from './portfolio/ProductsSection';
 import ChallengesSection from './portfolio/ChallengesSection';
 import TechSection from './portfolio/TechSection';
 import BlogSection from './portfolio/BlogSection';
+import TestimonialsSection from './portfolio/TestimonialsSection';
 import TimelineSection from './portfolio/TimelineSection';
 import ContactSection from './portfolio/ContactSection';
 import CTASection from './portfolio/CTASection';
@@ -40,6 +41,8 @@ const AppLayout: React.FC = () => {
         <TechSection />
         <SectionDivider />
         <BlogSection />
+        <SectionDivider />
+        <TestimonialsSection />
         <SectionDivider />
         <TimelineSection />
         <SectionDivider />

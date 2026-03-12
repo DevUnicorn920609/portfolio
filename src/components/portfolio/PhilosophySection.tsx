@@ -1,5 +1,5 @@
 import React from 'react';
-import { Lightbulb, Layers, Zap, Puzzle } from 'lucide-react';
+import { CheckCircle2, Lightbulb, Layers, Puzzle, Sparkles, Zap } from 'lucide-react';
 
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
@@ -46,28 +46,120 @@ const PhilosophySection: React.FC = () => {
           }`}
         >
           <span className="inline-block text-emerald-400 text-sm font-semibold uppercase tracking-widest mb-4">
-            Philosophy
+            About
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
-            How I Build Products
+            Bridging Vision & AI Capability
           </h2>
         </div>
 
-        {/* Philosophy Text */}
+        {/* About content */}
         <div
           ref={textRef}
-          className={`max-w-3xl mx-auto text-center mb-16 transition-all duration-700 delay-200 ${
+          className={`max-w-6xl mx-auto mb-16 transition-all duration-700 delay-200 ${
             textVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          <p className="text-lg text-gray-400 leading-relaxed mb-4">
-            I enjoy building real products that people use. Over the past decade I have worked with
-            startups and technology companies to transform ideas into scalable software systems.
-          </p>
-          <p className="text-lg text-gray-400 leading-relaxed">
-            My work focuses on clean architecture, rapid iteration, and solving complex technical
-            challenges. I don't just write code — I help shape the product.
-          </p>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+            {/* Story */}
+            <div className="lg:col-span-7 relative rounded-2xl glass overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-transparent pointer-events-none" />
+              <div className="relative p-6 sm:p-8">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-5">
+                  <Sparkles size={14} className="text-emerald-300" />
+                  <span className="text-xs font-semibold text-emerald-300 uppercase tracking-wider">
+                    AI as a multiplier
+                  </span>
+                </div>
+
+                <h3 className="text-2xl sm:text-3xl font-bold text-white leading-tight mb-4">
+                  I'm <span className="text-gradient">James Campbell</span> — a full-stack product engineer
+                  building faster with AI, without sacrificing quality.
+                </h3>
+
+                <div className="space-y-4 text-gray-400 leading-relaxed">
+                  <p>
+                    Over the past few years, I’ve built{' '}
+                    <span className="text-white font-medium">40+ production applications</span> using
+                    AI-assisted development — not as a shortcut, but as a way to iterate quickly while
+                    keeping the bar high for reliability and maintainability.
+                  </p>
+                  <p>
+                    What drives me: most people can’t access this power. Non-technical founders, small
+                    business owners, and creative professionals have incredible ideas — but the AI
+                    development landscape can feel overwhelming.
+                  </p>
+                  <p>
+                    I bridge the gap between <span className="text-white font-medium">human vision</span> and{' '}
+                    <span className="text-white font-medium">AI capability</span>, translating complex technical
+                    decisions into clear, understandable choices. You don’t need to know what a REST API
+                    is — you just need to know your product works.
+                  </p>
+                </div>
+
+                <div className="mt-7 flex flex-wrap gap-3">
+                  {[
+                    { k: '11+', v: 'Years building' },
+                    { k: '40+', v: 'AI-assisted builds' },
+                    { k: '14+', v: 'Products shipped' },
+                  ].map((m) => (
+                    <div
+                      key={m.v}
+                      className="px-4 py-3 rounded-xl bg-white/5 border border-white/5"
+                    >
+                      <div className="text-lg font-bold text-emerald-400 leading-none">{m.k}</div>
+                      <div className="text-xs text-gray-500 mt-1">{m.v}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Side cards */}
+            <div className="lg:col-span-5 space-y-6">
+              <div className="p-6 sm:p-7 rounded-2xl glass glass-hover">
+                <h4 className="text-lg font-semibold text-white mb-4">Who I help</h4>
+                <div className="space-y-3">
+                  {[ 
+                    'Non-technical founders going from idea → MVP',
+                    'Teams adding AI features (agents, chat, automations)',
+                    'SaaS companies improving performance, reliability, and architecture',
+                  ].map((item) => (
+                    <div key={item} className="flex items-start gap-3">
+                      <CheckCircle2 size={18} className="text-emerald-400 mt-0.5" />
+                      <p className="text-sm text-gray-400 leading-relaxed">{item}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="p-6 sm:p-7 rounded-2xl glass glass-hover">
+                <h4 className="text-lg font-semibold text-white mb-2">What you get</h4>
+                <p className="text-sm text-gray-400 leading-relaxed mb-4">
+                  Clear tradeoffs, fast delivery, and production-ready engineering — with weekly progress
+                  you can actually see.
+                </p>
+
+                <div className="flex flex-wrap gap-2">
+                  {['MVP Build', 'SaaS', 'AI Integration', 'Scaling', 'Clean Architecture'].map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-3 py-1.5 text-xs font-medium text-gray-300 bg-white/5 rounded-lg border border-white/5"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <a
+                  href="#contact"
+                  className="mt-5 inline-flex items-center justify-center w-full px-4 py-3 rounded-xl bg-emerald-500 text-[hsl(160,10%,4%)] font-semibold hover:bg-emerald-400 transition-colors"
+                >
+                  Let’s talk about your idea
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Cards */}

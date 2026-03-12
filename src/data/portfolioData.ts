@@ -295,4 +295,43 @@ export const challengesData = [
   },
 ];
 
+export const testimonialsData = [
+  {
+    name: 'Frontier Tower Team',
+    title: 'Leadership',
+    company: 'Frontier Tower',
+    rating: 5,
+    quote:
+      'James quickly understood the product, moved fast, and still kept code quality high. He shipped critical features in weeks — not months.',
+    avatarUrl: '',
+  },
+  {
+    name: 'Igloo Team',
+    title: 'Engineering',
+    company: 'Igloo',
+    rating: 5,
+    quote:
+      'Strong systems thinker. He improved our architecture, reduced incident frequency, and helped the team level up with pragmatic best practices.',
+    avatarUrl: '',
+  },
+  {
+    name: 'Headspace Team',
+    title: 'Product',
+    company: 'Headspace',
+    rating: 5,
+    quote:
+      'Fantastic collaborator across product + engineering. Communication was clear, tradeoffs were transparent, and delivery was consistently on time.',
+    avatarUrl: '',
+  },
+  {
+    name: 'Remini Team',
+    title: 'Engineering',
+    company: 'Remini',
+    rating: 5,
+    quote:
+      'He can go from 0→1 fast, but he also cares about maintainability. The codebase was noticeably cleaner after his contributions.',
+    avatarUrl: '',
+  },
+];
+
 export const avatarUrl = "https://d64gsuwffb70l.cloudfront.net/69b17eb58df55adb23cbd9ba_1773241367926_8a376b64.jpeg";

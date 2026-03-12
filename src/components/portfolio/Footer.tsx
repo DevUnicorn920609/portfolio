@@ -26,7 +26,8 @@ const Footer: React.FC = () => {
               </span>
             </div>
             <p className="text-gray-500 text-sm leading-relaxed max-w-md mb-6">
-              Senior product-focused full-stack engineer with 11+ years of experience building SaaS platforms, AI tools, and startup products. Helping founders turn ideas into real, scalable software.
+              I’m James Campbell — a product-focused full-stack engineer using AI as a multiplier to help founders ship faster.
+              I bridge vision and execution, turning ideas into reliable, production-ready SaaS and AI products.
             </p>
             <div className="flex items-center gap-3">
               <a
