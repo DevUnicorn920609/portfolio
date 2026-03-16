@@ -196,6 +196,46 @@ export const blogPosts = [
     readTime: "9 min read",
     content: `Performance isn't just about user experience — it directly impacts your infrastructure costs and conversion rates. Here are strategies I've used across multiple SaaS products.\n\n## Frontend Performance\n\nCode splitting, lazy loading, and proper asset optimization can dramatically reduce initial load times. Use tools like Lighthouse to identify bottlenecks and track improvements over time.\n\n## Database Optimization\n\nSlow queries are the most common performance bottleneck. Use EXPLAIN ANALYZE to understand query plans, add appropriate indexes, and consider read replicas for heavy read workloads.\n\n## Caching Layers\n\nImplement caching at every level — browser caching, CDN caching, application caching with Redis, and database query caching. Each layer reduces load on the layers below it.\n\n## Infrastructure Right-sizing\n\nMany teams over-provision their infrastructure. Use auto-scaling, spot instances, and serverless functions where appropriate to match capacity with actual demand.`,
   },
+  {
+    id: 7,
+    title: "Building Web3 Features That Feel Like Web2",
+    excerpt:
+      "A practical guide to integrating wallets, smart contracts, and decentralized storage without sacrificing UX or reliability.",
+    category: "Blockchain & Web3",
+    date: "Mar 2026",
+    readTime: "9 min read",
+    content: `Web3 products often fail for a simple reason: they ask users to understand too much too soon. The engineering challenge isn't just writing Solidity — it's shipping blockchain features with the same reliability and clarity users expect from modern SaaS.\n\n## Start With the UX Contract\n\nBefore touching a smart contract, define the user journey: connect wallet, sign, confirm, and recover from errors. Most drop-offs happen at the boundaries between your UI and the wallet.\n\n## Wallet Integration Patterns\n\nUse a single provider abstraction (for example Ethers.js) and treat provider state as a first-class part of your app. Handle chain switching, account changes, and disconnected states explicitly — don't let them become edge cases.\n\n## Smart Contracts: Keep Them Small\n\nPrefer small, composable contracts over one massive "do everything" contract. Use OpenZeppelin primitives, keep upgradeability decisions deliberate, and write tests for every critical permission and state transition.\n\n## Indexing and Querying On-chain Data\n\nOn-chain reads are slow and expensive if you do them naively. For rich UIs, index events and derived state using The Graph (or a similar indexer) so your frontend can query data like a normal API.\n\n## Decentralized Storage Without Surprises\n\nIPFS is great for content addressing, but you still need a strategy for pinning, gateways, and availability. Define what must be immutable, what can be cached, and what should remain in traditional storage.\n\n## Production Reliability\n\nTreat RPCs like any other external dependency: add timeouts, retries (with backoff), and multiple providers. Surface clear user messaging when transactions are pending, replaced, or dropped.`,
+  },
+  {
+    id: 8,
+    title: "Smart Contract Security Basics for Product Engineers",
+    excerpt:
+      "Common failure modes (reentrancy, access control, bad assumptions) and a checklist to ship safer Solidity in production.",
+    category: "Blockchain & Web3",
+    date: "Mar 2026",
+    readTime: "8 min read",
+    content: `Most Web3 incidents aren't caused by exotic cryptography — they're caused by everyday engineering mistakes. If you're a product engineer shipping Solidity, these are the high-leverage security basics that prevent the most expensive bugs.\n\n## Access Control First\n\nStart by enumerating who can call what. Prefer OpenZeppelin's Ownable/AccessControl patterns, and write tests that prove unauthorized callers cannot mutate state.\n\n## Reentrancy and External Calls\n\nAny external call can re-enter. Follow checks-effects-interactions, and use ReentrancyGuard when appropriate. Keep external calls at the end of functions whenever possible.\n\n## Integer/Accounting Invariants\n\nWrite down invariants (totalSupply, balances, escrow totals) and add tests that enforce them across state transitions. Property-style tests catch surprising edge cases quickly.\n\n## Upgradeability Tradeoffs\n\nIf you use proxies, treat initialization as part of your security model. Protect initializers, lock implementation contracts, and include upgrade tests as part of CI.\n\n## Audits Aren't Magic\n\nEven with an audit, keep your contracts small, reuse battle-tested libraries, and document assumptions. An audit reduces risk — it doesn't eliminate it.`,
+  },
+  {
+    id: 9,
+    title: "Indexing On-chain Data with The Graph: A UI-First Approach",
+    excerpt:
+      "How to model events, build subgraphs, and serve fast queryable data for dashboards, marketplaces, and analytics-heavy dApps.",
+    category: "Blockchain & Web3",
+    date: "Feb 2026",
+    readTime: "10 min read",
+    content: `If your UI needs more than a handful of reads, direct RPC calls will become your bottleneck. The Graph (or similar indexers) lets you query derived state like a normal API, which is how you build responsive product experiences.\n\n## Think in Events\n\nDesign your data model around emitted events. Events are your source of truth for indexing: transfers, mints, burns, listings, bids, and state transitions.\n\n## Derived State for UX\n\nYour UI usually wants aggregates (floor price, total volume, user positions). Store derived entities during mapping so your frontend doesn't compute expensive joins client-side.\n\n## Versioning and Migrations\n\nContracts evolve. Plan for schema versioning, subgraph redeploys, and backfills. Treat it like database migrations — with discipline and changelogs.\n\n## Reliability in Production\n\nRun multiple RPC providers, monitor indexing lag, and expose graceful fallbacks when the indexer is behind. Your app should still function (even if in degraded mode).`,
+  },
+  {
+    id: 10,
+    title: "IPFS in Production: Pinning, Gateways, and Availability",
+    excerpt:
+      "A pragmatic guide to making decentralized storage dependable: pinning strategies, gateway redundancy, and caching.",
+    category: "Blockchain & Web3",
+    date: "Jan 2026",
+    readTime: "9 min read",
+    content: `IPFS is powerful because content addressing changes how you think about data. But "decentralized" doesn't automatically mean "available" — you need operational practices to make it production-grade.\n\n## Pinning Strategy\n\nIf content matters, pin it. Use a dedicated pinning provider (or your own nodes) and document what is pinned forever vs. what can expire.\n\n## Gateway Redundancy\n\nDon't depend on a single public gateway. Use multiple gateways, implement retry/fallback, and consider a custom gateway domain for performance and branding.\n\n## Caching and Performance\n\nIPFS retrieval can be slow on cold content. Add CDN caching for hot assets (images, JSON metadata) while keeping the CID-based immutability guarantees.\n\n## Metadata Integrity\n\nStore immutable metadata where possible. When you must reference mutable data, make the mutability explicit in your product and API design.\n\n## User Experience\n\nAlways handle the "still loading" path gracefully. Timeouts, skeleton states, and helpful error messages are critical when the underlying network is variable.`,
+  },
 ];
 
 export const techStack = {
@@ -208,6 +248,23 @@ export const techStack = {
     title: "Backend",
     icon: "server",
     technologies: ["Node.js", "Python", "PHP", "Laravel", "Express"],
+  },
+  blockchain: {
+    title: "Blockchain & Web3",
+    icon: "blocks",
+    technologies: [
+      "Solidity",
+      "Ethereum",
+      "Ethers.js",
+      "Foundry",
+      "OpenZeppelin",
+      "WalletConnect",
+      "MetaMask SDK",
+      "ERC-20 / ERC-721",
+      "Chainlink",
+      "The Graph",
+      "IPFS",
+    ],
   },
   databases: {
     title: "Databases",

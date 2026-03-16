@@ -1,11 +1,12 @@
 import React from 'react';
-import { Monitor, Server, Database, Cloud, Brain, Wrench, type LucideIcon } from 'lucide-react';
+import { Monitor, Server, Database, Cloud, Brain, Wrench, Blocks, type LucideIcon } from 'lucide-react';
 import { techStack } from '@/data/portfolioData';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 const iconMap: Record<string, LucideIcon> = {
   layout: Monitor,
   server: Server,
+  blocks: Blocks,
   database: Database,
   cloud: Cloud,
   brain: Brain,
