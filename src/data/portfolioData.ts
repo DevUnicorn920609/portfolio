@@ -1,3 +1,5 @@
+import avatarImageUrl from '@/assets/avatar.jpeg';
+
 export const portfolioItems = [
   {
     id: 1,
@@ -391,4 +393,6 @@ export const testimonialsData = [
   },
 ];
 
-export const avatarUrl = "https://d64gsuwffb70l.cloudfront.net/69b17eb58df55adb23cbd9ba_1773241367926_8a376b64.jpeg";
+// Used by the hero section avatar.
+// Vite will bundle this asset and turn it into a final URL string.
+export const avatarUrl = avatarImageUrl;
